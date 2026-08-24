@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candidate A — Signage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4f4f2;
+      --ink: #181815;
+      --ink-soft: #55524a;
+      --rule: #d8d7d2;
+      --rule-strong: #181815;
+      --accent: #d84910;        /* marks, rules, large display only */
+      --accent-text: #b23c06;   /* links, small accent text (5.4:1 on paper) */
+      --accent-ink: #ffffff;
+      --display: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
+      --sans: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #1a1a17;
+        --ink: #e9e7e1;
+        --ink-soft: #a5a297;
+        --rule: #3a3a35;
+        --rule-strong: #e9e7e1;
+        --accent: #ff8a4d;
+        --accent-text: #ff8a4d;
+        --accent-ink: #1a1a17;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper); color: var(--ink);
+      font-family: var(--sans); font-size: 1.0625rem; line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 66rem; margin: 0 auto; padding: 0 1.5rem; }
+    a { color: var(--accent-text); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, .cta:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+    .site-header { border-bottom: 3px solid var(--rule-strong); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      justify-content: space-between; gap: 0.5rem 1.5rem;
+      padding-top: 1.3rem; padding-bottom: 1rem;
+    }
+    .wordmark {
+      font-family: var(--display); font-weight: 700; font-size: 1.45rem;
+      letter-spacing: 0.01em; color: var(--ink); text-decoration: none;
+      text-transform: uppercase;
+    }
+    .wordmark .llc { font-family: var(--sans); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; color: var(--ink-soft); margin-left: 0.45rem; vertical-align: 0.2em; }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 1.5rem; font-family: var(--display); font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .site-nav a { color: var(--ink); text-decoration: none; }
+    .site-nav a:hover { color: var(--accent-text); }
+    .site-nav a[aria-current="page"] { color: var(--accent-text); border-bottom: 3px solid var(--accent); padding-bottom: 1px; }
+
+    /* Hero: asymmetric — big display left, lede bottom-right */
+    .hero { padding: 4rem 0 3.5rem; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 2rem 4rem; align-items: end; }
+    h1 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(2.7rem, 7vw, 5rem); line-height: 1.0; letter-spacing: -0.005em;
+    }
+    .lede { font-size: 1.1rem; line-height: 1.6; color: var(--ink-soft); padding-bottom: 0.4rem; }
+    .hero-mark { width: 5.5rem; height: 0.5rem; background: var(--accent); margin-bottom: 1.6rem; }
+
+    /* Spec-sheet sections: label rail left, content right */
+    .spec { border-top: 1px solid var(--rule-strong); padding: 2.5rem 0 3rem; }
+    .spec-grid { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1rem 4rem; }
+    .spec h2 {
+      font-family: var(--display); font-weight: 700; font-size: 1.3rem;
+      text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3;
+    }
+    @media (max-width: 44rem) {
+      .hero-grid, .spec-grid { grid-template-columns: 1fr; }
+      .spec { padding: 2rem 0 2.2rem; }
+    }
+
+    .ledger { list-style: none; }
+    .ledger li { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+    .ledger li:first-child { padding-top: 0.2rem; }
+    .ledger .term { font-weight: 700; }
+    .ledger .desc { color: var(--ink-soft); }
+    @media (max-width: 44rem) { .ledger li { grid-template-columns: 1fr; gap: 0.2rem; } }
+
+    /* Product band — full-width, no card */
+    .product { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 1rem 4rem; align-items: start; }
+    .product-name {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1; text-transform: uppercase;
+    }
+    .product-kind { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.5rem; }
+    .product p { color: var(--ink); }
+    .cta {
+      display: inline-block; margin-top: 1.3rem;
+      background: var(--accent-text); color: var(--accent-ink);
+      font-family: var(--display); font-weight: 600; font-size: 1.05rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      text-decoration: none; padding: 0.65rem 1.3rem;
+    }
+    .cta:hover { background: var(--ink); color: var(--paper); }
+    @media (prefers-color-scheme: dark) { .cta { background: var(--accent); } .cta:hover { background: var(--ink); } }
+    .note { color: var(--ink-soft); font-size: 0.95rem; margin-top: 1.6rem; }
+    @media (max-width: 44rem) { .product { grid-template-columns: 1fr; } }
+
+    .deal-list { list-style: none; }
+    .deal-list li { padding: 0.9rem 0; border-bottom: 1px solid var(--rule); }
+    .deal-list li:first-child { padding-top: 0.2rem; }
+    .deal-list strong { display: block; }
+    .deal-list span { color: var(--ink-soft); }
+
+    .site-footer { border-top: 3px solid var(--rule-strong); padding: 2.4rem 0 2.6rem; font-size: 0.9rem; color: var(--ink-soft); }
+    .footer-cols { display: flex; flex-wrap: wrap; gap: 2rem 5rem; margin-bottom: 2rem; }
+    .footer-cols nav { display: flex; flex-direction: column; gap: 0.45rem; }
+    .col-label { font-family: var(--display); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink); margin-bottom: 0.3rem; }
+    .site-footer a { color: var(--ink); }
+    .site-footer a:hover { color: var(--accent-text); }
+    .colophon { border-top: 1px solid var(--rule); padding-top: 1.2rem; line-height: 1.7; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">TalkingScientist Ventures<span class="llc">LLC</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/products.html">Products</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-mark" aria-hidden="true"></div>
+      <div class="hero-grid">
+        <h1>Practical tools for people who&rsquo;d rather be working.</h1>
+        <p class="lede">A product studio in Arkansas. We build software tools and digital products for small businesses and tradespeople: store and web apps that remove busywork, and operational workbooks that keep jobs on track.</p>
+      </div>
+    </div>
+
+    <section class="spec" aria-labelledby="what-we-make">
+      <div class="spec-grid">
+        <h2 id="what-we-make">What we make</h2>
+        <ul class="ledger">
+          <li>
+            <span class="term">Store &amp; web apps</span>
+            <span class="desc">Apps and extensions for the platforms small businesses already run on: Shopify, WordPress, and Chrome. Focused tools that do one job well.</span>
+          </li>
+          <li>
+            <span class="term">Operational workbooks</span>
+            <span class="desc">Structured planning and tracking workbooks for the trades. Built from real workflows, not templates with the logo swapped.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="spec" aria-labelledby="available-now">
+      <div class="spec-grid">
+        <h2 id="available-now">Available now</h2>
+        <div>
+          <div class="product">
+            <div>
+              <p class="product-name">GritBench</p>
+              <p class="product-kind">Operational workbooks for tradespeople</p>
+            </div>
+            <div>
+              <p>Planning and job-tracking tools built for the bench, the truck, and the site office. Sold as digital downloads through our Etsy shop.</p>
+              <a class="cta" href="https://gritbench.etsy.com">Visit the GritBench shop&nbsp;&rarr;</a>
+            </div>
+          </div>
+          <p class="note">More products are in development. We list them here once they are released and supported.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec" aria-labelledby="how-we-work">
+      <div class="spec-grid">
+        <h2 id="how-we-work">How we do business</h2>
+        <ul class="deal-list">
+          <li><strong>Buy where you already shop.</strong> <span>Our products sell through established marketplaces and payment platforms. We never handle your card details ourselves.</span></li>
+          <li><strong>Small catalog, kept current.</strong> <span>Everything we sell is maintained. When a product reaches end of life, we say so plainly.</span></li>
+          <li><strong>A person you can reach.</strong> <span>Support goes to <a href="mailto:support@talkingscientistventures.com">support@talkingscientistventures.com</a> and gets answered.</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-cols">
+      <nav aria-label="Site">
+        <span class="col-label">Site</span>
+        <a href="/">Home</a>
+        <a href="/products.html">Products</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <nav aria-label="Legal">
+        <span class="col-label">Legal</span>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/refunds.html">Refund Policy</a>
+      </nav>
+      <nav aria-label="Elsewhere">
+        <span class="col-label">Elsewhere</span>
+        <a href="https://gritbench.etsy.com">GritBench &mdash; our shop</a>
+        <a href="mailto:support@talkingscientistventures.com">support@talkingscientistventures.com</a>
+      </nav>
+    </div>
+    <p class="colophon">&copy; 2026 TalkingScientist Ventures LLC &middot; 701 South St Ste 100, Mountain Home, AR 72653</p>
+  </div>
+</footer>
+
+</body>
+</html>
