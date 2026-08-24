@@ -18,11 +18,11 @@ SRC="$(cd "$(dirname "$0")" && pwd)"
 STAGE="/tmp/tsv-site-deploy"
 DOCROOT="talkingscientistventures.com"
 
-EXCLUDES=(--exclude '.git' --exclude 'ops' --exclude 'deploy.sh' --exclude 'README.md')
+EXCLUDES=(--exclude '.git' --exclude 'ops' --exclude 'deploy.sh' --exclude 'README.md' --exclude '*.md')
 
 echo "==> Staging on tsv01"
 ssh tsv01 "mkdir -p $STAGE"
-rsync -av --delete "${EXCLUDES[@]}" "$SRC/" "tsv01:$STAGE/"
+rsync -av --delete --delete-excluded "${EXCLUDES[@]}" "$SRC/" "tsv01:$STAGE/"
 
 echo "==> Publishing tsv01 -> vps docroot"
 ssh tsv01 "rsync -av --delete $STAGE/ vps:~/$DOCROOT/"
