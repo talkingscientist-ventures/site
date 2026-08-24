@@ -23,7 +23,7 @@ regenerate — harmless).
 
 ## Verification (Playwright chromium 1.62.1 on tsv01, live URLs)
 
-Script: repo `ops/` was verified by `/tmp/verify.mjs` on tsv01; results in
+Script: `ops/verify.mjs`, run on tsv01 (needs `ln -sfn /usr/lib/node_modules /tmp/node_modules`); results in
 `problems.txt` alongside the screenshots.
 
 - All 7 pages return 200 at desktop (1440×900) and mobile (375×812); the
