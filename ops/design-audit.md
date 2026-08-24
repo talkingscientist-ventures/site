@@ -64,3 +64,22 @@ Three home-page candidates built as self-contained static files in
   footer colophon block in the applied design.
 - C: safest but still reads like v1 with the volume up; Fraunces at display
   size keeps a literary cast that undercuts the toolbench brief.
+
+## Verification (2026-08-24, after deploy)
+
+- Local (127.0.0.1 http server) and live runs of the Playwright harness:
+  all 8 pages at 1440×900 and 375×812, zero console/page errors, zero failed
+  requests, zero horizontal overflow. Live run also re-checked status codes
+  (200 everywhere, 404 on the deliberate `/nope-404-test`), footer legal
+  links, shop link, and support mailto on every page. Only logged console
+  entries: the 404 test page's own 404 response (expected, same as v1).
+- After-screenshots: `ops/evidence-v2/after/` (live). Dark-mode spot check
+  captured locally (`prefers-color-scheme: dark` renders the inverted ink
+  scheme correctly).
+- Contrast (computed, WCAG): ink/paper 16.2:1; soft ink 7.1:1; link
+  `#b23c06` on paper 5.4:1; CTA white on `#b23c06` 5.9:1. Dark mode: ink
+  14.1:1, soft 6.8:1, accent `#ff8a4d` 7.5:1, CTA ink-on-accent 7.5:1.
+  All AA or better; bright `#d84910` is used only for non-text marks/rules.
+- Legal pages: restyled only; body content byte-identical apart from the
+  removed decorative "Legal" kicker line, the font link, and the footer
+  chrome label ("GritBench — our shop" → "GritBench, our shop").

@@ -1,0 +1,2 @@
+[console desktop] https://talkingscientistventures.com/nope-404-test: Failed to load resource: the server responded with a status of 404 ()
+[console mobile] https://talkingscientistventures.com/nope-404-test: Failed to load resource: the server responded with a status of 404 ()
