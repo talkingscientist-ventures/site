@@ -43,6 +43,30 @@ body {
 
 .wrap { max-width: 66rem; margin: 0 auto; padding: 0 1.5rem; }
 
+/* Skip link: visually hidden until keyboard focus */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
 a { color: var(--accent-text); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 a:focus-visible, .cta:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }

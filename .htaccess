@@ -5,3 +5,17 @@ RewriteEngine On
 # Canonical host: redirect www to apex (both are covered by the certificate)
 RewriteCond %{HTTP_HOST} ^www\.talkingscientistventures\.com$ [NC]
 RewriteRule ^(.*)$ https://talkingscientistventures.com/$1 [R=301,L]
+
+# Extensionless legal URLs -> canonical .html pages
+RewriteRule ^terms/?$ /terms.html [R=301,L]
+RewriteRule ^privacy/?$ /privacy.html [R=301,L]
+RewriteRule ^refunds/?$ /refunds.html [R=301,L]
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()"
+  Header always set X-Frame-Options "DENY"
+</IfModule>
